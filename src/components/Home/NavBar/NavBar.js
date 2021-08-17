@@ -1,7 +1,6 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellOutline, MenuOutline, XCircleOutline } from 'heroicons-react'
-import Map2 from '../Map/demo'
 import Map from '../Map/Map'
 // import Map from '../Map/Map'
 
@@ -187,7 +186,6 @@ export default function NavBar() {
           <div className="px-4 py-6 sm:px-0">
             <div className="border-4 border-dashed border-gray-200 rounded-lg h-96">
               <Map/>
-              {/* <Map2/> */}
               </div>
           </div>
           {/* /End replace */}
