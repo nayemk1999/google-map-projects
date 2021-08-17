@@ -10,38 +10,76 @@ const geolocateControlStyle = {
 };
 const layerStyle = {
     id: 'point',
-    type: 'fill',
+    type: 'line',
     source: "my-data",
     paint: {
-        'fill-color': "red",
-        'fill-opacity': 0.4
+        'line-color': 'red',
+        'line-width': 2
     }
 };
 
 const Map = () => {
     const [geoData, setGeoData] = useState({})
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch("https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_admin_1_states_provinces_shp.geojson")
-        .then(res => res.json())
-        .then(data => setGeoData(data.features[2]))
+            .then(res => res.json())
+            .then(data => setGeoData(data.features[3]))
     }, [])
 
-    // const na = geoData.geometry.coordinates;
-    // console.log(geoData);
+    const multiType = geoData.geometry?.coordinates[0][0]
+    const polyType = geoData.geometry?.coordinates
 
     const [viewport, setViewport] = useState({
-        latitude: 37.78,
-        longitude: -122.41,
-        zoom: 14,
+        latitude: 48.01027395282483,
+        longitude: -89.59940914585667,
+        zoom: 1,
         center: [-77.0214, 38.897],
         bearing: 0,
         pitch: 0
     });
 
-    const goToSF = () => {
-        
-      };
+    const goToSF = (event) => {
+
+        if (polyType.length === 1) {
+            const vp = new WebMercatorViewport(viewport);
+            const { longitude, latitude } = vp.fitBounds(
+                polyType[0],
+                {
+                    padding: 40
+                }
+            );
+
+            setViewport({
+                ...viewport,
+                longitude,
+                latitude,
+                zoom: 4,
+                transitionDuration: 2000,
+                transitionInterpolator: new FlyToInterpolator(),
+            });
+        }
+        else {
+            const vp = new WebMercatorViewport(viewport);
+            const { longitude, latitude } = vp.fitBounds(
+                multiType,
+                {
+                    padding: 40
+                }
+            );
+
+            setViewport({
+                ...viewport,
+                longitude,
+                latitude,
+                zoom: 4,
+                transitionDuration: 2000,
+                transitionInterpolator: new FlyToInterpolator(),
+            });
+            // alert('please try again................')
+        }
+
+    };
 
     return (
         <MapGL
@@ -59,9 +97,6 @@ const Map = () => {
             </Source>
             <button onClick={goToSF}>Click here</button>
         </MapGL>
-        // <ReactMapGL {...viewport} width="100vw" height="100vh" onViewportChange={setViewport}>
-
-        // </ReactMapGL>
 
     );
 };
