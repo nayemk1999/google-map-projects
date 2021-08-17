@@ -1,25 +1,24 @@
 import * as React from 'react';
 import {useState} from 'react';
-import {render} from 'react-dom';
+// import {render} from 'react-dom';
 import MapGL, {LinearInterpolator, WebMercatorViewport} from 'react-map-gl';
 import bbox from '@turf/bbox';
 
-import ControlPanel from './control-panel';
-import MAP_STYLE from './map-style';
+const MAPBOX_TOKEN = 'pk.eyJ1Ijoia2t1cnR6IiwiYSI6ImNrOWE4djN1eDAyd3UzZXBuYzF1OWtjYTQifQ.obmfLm5bA5yqrac86Fw8GQ'; // Set your mapbox token here
 
-const TOKEN = ''; // Set your mapbox token here
-
-export default function App() {
+export default function Map2() {
   const [viewport, setViewport] = useState({
     latitude: 37.78,
     longitude: -122.4,
     zoom: 11,
     bearing: 0,
     pitch: 0
+    
   });
 
   const onClick = event => {
     const feature = event.features[0];
+    console.log('cliked');
     if (feature) {
       // calculate the bounding box of the feature
       const [minLng, minLat, maxLng, maxLat] = bbox(feature);
@@ -54,17 +53,13 @@ export default function App() {
         {...viewport}
         width="100%"
         height="100%"
-        mapStyle={MAP_STYLE}
+        mapStyle="mapbox://styles/mapbox/streets-v11"
         interactiveLayerIds={['sf-neighborhoods-fill']}
         onClick={onClick}
         onViewportChange={v => setViewport(v)}
-        mapboxApiAccessToken={TOKEN}
+        mapboxApiAccessToken={MAPBOX_TOKEN}
       />
-      <ControlPanel />
+      {/* <ControlPanel /> */}
     </>
   );
-}
-
-export function renderToDom(container) {
-  render(<App />, container);
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 
 const ContentCard = (props) => {
-    console.log(props.geocontent.properties.name);
+    // console.log(props.geocontent.properties.name);
+    console.log(props.geocontent.geometry.coordinates[0])
     return (
         <div className='col-md-4'>
             <div class="card">
