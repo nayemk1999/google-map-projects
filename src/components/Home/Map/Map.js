@@ -19,22 +19,14 @@ const layerStyle = {
 const Map = () => {
     const [geoData, setGeoData] = useState({})
     const [geo, setGeo] = useContext(DataContext)
-    // console.log(geo);
-
-    // useEffect(() => {
-    //     fetch("https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_admin_1_states_provinces_shp.geojson")
-    //         .then(res => res.json())
-    //         .then(data => setGeoData(data.features[3]))
-    // }, [])
-
-    const multiType = geo.geometry?.coordinates[0][0]
-    const polyType = geo.geometry?.coordinates
+    
+    // const multiType = geo.geometry?.coordinates[0][0]
+    // const polyType = geo.geometry?.coordinates
 
     const [viewport, setViewport] = useState({
-        latitude: 48.01027395282483,
-        longitude: -89.59940914585667,
-        // lngLatZ: multiType || polyType || [[48.01027395282483], [-89.59940914585667]],
-        zoom: 5,
+        latitude: 44.56115631771988,
+        longitude: -111.19418921593007,
+        zoom: 3,
         center: [-77.0214, 38.897],
         bearing: 0,
         pitch: 0,

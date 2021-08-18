@@ -14,7 +14,7 @@ const Content = () => {
     return (
         <div className='flex  flex-col  md:flex-row justify-center  flex-wrap gap-3 mt-10'>
             {
-                geoJsonData?.map((geocontent, index) => <ContentCard key={index} geocontent={geocontent}/>)
+                geoJsonData?.map((geocontent, index) => <ContentCard index ={index} key={index} geocontent={geocontent}/>)
             }
         </div>
     );
