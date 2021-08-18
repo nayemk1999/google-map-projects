@@ -33,52 +33,54 @@ const Map = () => {
     const [viewport, setViewport] = useState({
         latitude: 48.01027395282483,
         longitude: -89.59940914585667,
+        // lngLatZ: multiType || polyType || [[48.01027395282483], [-89.59940914585667]],
         zoom: 5,
         center: [-77.0214, 38.897],
         bearing: 0,
-        pitch: 0
+        pitch: 0,
+        
     });
 
-    const goToSF = (event) => {
-        if (polyType.length === 1) {
-            const vp = new WebMercatorViewport(viewport);
-            const { longitude, latitude } = vp.fitBounds(
-                polyType[0],
-                {
-                    padding: 40
-                }
-            );
+    // const goToSF = () => {
+    //     if (polyType.length === 1) {
+    //         const vp = new WebMercatorViewport(viewport);
+    //         const { longitude, latitude } = vp.fitBounds(
+    //             polyType[0],
+    //             {
+    //                 padding: 40
+    //             }
+    //         );
 
-            setViewport({
-                ...viewport,
-                longitude,
-                latitude,
-                zoom: 4,
-                transitionDuration: 2000,
-                transitionInterpolator: new FlyToInterpolator(),
-            });
-        }
-        else {
-            const vp = new WebMercatorViewport(viewport);
-            const { longitude, latitude } = vp.fitBounds(
-                multiType,
-                {
-                    padding: 40
-                }
-            );
+    //         setViewport({
+    //             ...viewport,
+    //             longitude,
+    //             latitude,
+    //             zoom: 4,
+    //             transitionDuration: 2000,
+    //             transitionInterpolator: new FlyToInterpolator(),
+    //         });
+    //     }
+    //     else {
+    //         const vp = new WebMercatorViewport(viewport);
+    //         const { longitude, latitude } = vp.fitBounds(
+    //             multiType,
+    //             {
+    //                 padding: 40
+    //             }
+    //         );
 
-            setViewport({
-                ...viewport,
-                longitude,
-                latitude,
-                zoom: 20,
-                transitionDuration: 2000,
-                transitionInterpolator: new FlyToInterpolator(),
-            });
-            // alert('please try again................')
-        }
+    //         setViewport({
+    //             ...viewport,
+    //             longitude,
+    //             latitude,
+    //             zoom: 20,
+    //             transitionDuration: 2000,
+    //             transitionInterpolator: new FlyToInterpolator(),
+    //         });
+    //         // alert('please try again................')
+    //     }
 
-    };
+    // };
 
     return (
         <MapGL
@@ -89,13 +91,12 @@ const Map = () => {
             mapStyle="mapbox://styles/mapbox/streets-v11"
             onViewportChange={setViewport}
             mapboxApiAccessToken={MAPBOX_TOKEN}
-            // onLoad={goToSF}
+            
 
         >
             <Source id="my-data" type="geojson" data={geo}>
                 <Layer {...layerStyle} />
             </Source>
-            
             
         </MapGL>
 
