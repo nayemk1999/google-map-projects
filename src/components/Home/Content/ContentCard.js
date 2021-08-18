@@ -26,21 +26,23 @@ const ContentCard = ({ key, geocontent }) => {
                     <p class="ml-4 text-white uppercase">Title</p>
                 </div>
                 {/* <p class="py-6 px-6 text-lg tracking-wide text-center">Description Goes here</p> */}
-                {
-                    tooltipShow &&
+                <div className={(tooltipShow ? "visible" : "invisible ")}>
                     <div className="bg-pink-600 border-0 mb-3 block z-50 font-normal leading-normal text-sm max-w-xs text-center no-underline break-words rounded-lg">
-
-                        <div
-                            className=
-                            "bg-pink-600 text-white opacity-75 font-semibold p-3 mb-0 border-b border-solid border-blueGray-100 uppercase rounded-t-lg"
-                        >
-                            tooltip title
-                        </div>
-                        <div className="text-white p-3">
-                            And here's some amazing content. It's very engaging. Right?
-                        </div>
+                        <>
+                            <div
+                                className=
+                                "bg-pink-600 text-white opacity-75 font-semibold p-3 mb-0 border-b border-solid border-blueGray-100 uppercase rounded-t-lg"
+                            >
+                                tooltip title
+                            </div>
+                            <div className="text-white p-3">
+                                And here's some amazing content. It's very engaging. Right?
+                            </div>
+                        </>
                     </div>
-                }
+                </div>
+
+
 
                 <div class="flex justify-center px-5 mb-2 text-sm ">
                     <button type="button" class="border border-indigo-500 text-indigo-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-green-600 focus:outline-none focus:shadow-outline">
@@ -48,7 +50,7 @@ const ContentCard = ({ key, geocontent }) => {
                     </button>
                 </div>
 
-                
+
 
             </div>
         </div>
