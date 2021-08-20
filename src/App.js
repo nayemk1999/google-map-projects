@@ -1,6 +1,6 @@
+import React, { createContext, useState } from "react";
 import './App.css';
 // import "tailwindcss/tailwind.css"
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Home from './components/Home/Home/Home';
 import {
@@ -10,19 +10,26 @@ import {
   Link
 } from "react-router-dom";
 
-function App() {
-  return (
-    <Router >
-      <Switch>
-        <Route exact to="/">
-          <Home />
-        </Route>
-        <Route to="/home">
-          <Home />
-        </Route>
-      </Switch>
 
-    </Router>
+export const DataContext = createContext();
+
+function App() {
+  const [geo, setGeo] = useState({});
+  // console.log(geo);
+  return (
+    <DataContext.Provider value={[geo, setGeo]}>
+      <Router >
+        <Switch>
+          <Route exact to="/">
+            <Home />
+          </Route>
+          <Route to="/home">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
+    </DataContext.Provider>
+
   );
 }
 
