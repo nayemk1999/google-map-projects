@@ -4,12 +4,12 @@ import {render} from 'react-dom';
 import MapGL, {LinearInterpolator, WebMercatorViewport} from 'react-map-gl';
 import bbox from '@turf/bbox';
 
-import ControlPanel from './control-panel';
-import MAP_STYLE from './map-style';
+// import ControlPanel from './control-panel';
+// import MAP_STYLE from './map-style';
 
 const TOKEN = ''; // Set your mapbox token here
 
-export default function App() {
+export default function Map() {
   const [viewport, setViewport] = useState({
     latitude: 37.78,
     longitude: -122.4,
@@ -60,11 +60,8 @@ export default function App() {
         onViewportChange={v => setViewport(v)}
         mapboxApiAccessToken={TOKEN}
       />
-      <ControlPanel />
     </>
   );
 }
 
-export function renderToDom(container) {
-  render(<App />, container);
-}
+export default Map;
